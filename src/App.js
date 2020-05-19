@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import usePortal from "./Hooks/usePortal";
 
 function App() {
+  const { Portal, isShow, show, hide, toggle } = usePortal({
+    defaultShow: false,
+    onShow: () => {
+      console.log("Show");
+    },
+    onHide: () => {
+      console.log("Hide");
+    },
+  });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={show}>Show</button>
+      <button onClick={hide}>Hide</button>
+      <button onClick={toggle}>Toogle</button>
+      <p>Status => {isShow.toString()}</p>
+      <hr />
+      <Portal>Hello World!!</Portal>
     </div>
   );
 }
