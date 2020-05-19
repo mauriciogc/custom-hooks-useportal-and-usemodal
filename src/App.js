@@ -1,10 +1,12 @@
 import React from "react";
 import "./App.css";
-import usePortal from "./Hooks/usePortal";
+import useModal from "./Hooks/useModal";
 
 function App() {
-  const { Portal, isShow, show, hide, toggle } = usePortal({
-    defaultShow: false,
+  const { Modal, isShow, show, hide, toggle } = useModal({
+    //showClose: false,
+    clickOutsideToHide: true,
+    escToHide: true,
     onShow: () => {
       console.log("Show");
     },
@@ -19,7 +21,7 @@ function App() {
       <button onClick={toggle}>Toogle</button>
       <p>Status => {isShow.toString()}</p>
       <hr />
-      <Portal>Hello World!!</Portal>
+      <Modal>Hello World!!</Modal>
     </div>
   );
 }
